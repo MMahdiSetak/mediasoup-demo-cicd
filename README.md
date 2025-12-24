@@ -28,7 +28,7 @@ The focus here is on DevOps practices: building a reliable Dockerfile, adding un
 ## Features
 
 - **Docker Support**: Multi-stage Dockerfile for efficient builds, with native module rebuilding for mediasoup.
-- **Kubernetes Deployment**: High-priority pods with guaranteed resources (1 CPU, 1Gi RAM), service exposure, and priority class.
+- **Kubernetes Deployment**: Guaranteed resources (1 CPU, 1Gi RAM), service exposure, and priority class.
 - **CI/CD Automation**: GitHub Actions workflow with stages for test (Jest unit tests), build (Docker image push), and deploy (kubectl apply to K8s).
 - **Testing**: Unit tests for utility functions; container runtime testing with custom configs.
 - **Configurable**: Custom `config.mjs` for ports, TLS, and mediasoup workers.
@@ -77,7 +77,7 @@ Throughout development, the following key activities were executed:
 
 - **Dockerfile Creation and Debugging**: Initial Dockerfile, fixed `npm ci` errors by ignoring scripts initially, rebuilding natives, and running prepare/build manually. Updated runtime command for direct Node execution.
 - **Container Testing**: Ran container with port mappings (e.g., `-p 3000:3000`), mounted custom configs, enabled debug logs. Troubleshot exits due to invalid TLS paths by disabling HTTPS.
-- **Kubernetes Setup**: Created `k8s/` dir; defined high-priority class (value: 1000000); Deployment with 1 replica, resource limits/requests; Service on port 3000. Noted needs for UDP ports in multi-worker setups.
+- **Kubernetes Setup**: Created `k8s/` dir; Deployment with 1 replica, resource limits/requests; Service on port 3000. Noted needs for UDP ports in multi-worker setups.
 - **Unit Test Addition**: Implemented `isValidPort` function and tests; resolved Jest setup issues (preset errors, installs) using temporary deps in CI.
 - **CI/CD Workflow**: Configured `.github/workflows/cicd.yaml` with jobs for test/build/deploy. Handled secrets, image updates in manifests, and kubectl integration. Debugged test failures by adjusting installs and configs.
 - **Research and Alternatives**: Explored free K8s options (Killercoda for manual tests, GKE/Oracle for CI/CD); noted limitations for automated deploys.
@@ -139,7 +139,6 @@ Connect client to `ws://localhost:3000/?roomId=test`.
 1. Push image to registry (e.g., Docker Hub).
 2. Apply manifests:
    ```
-   kubectl apply -f k8s/priority-class.yaml
    kubectl apply -f k8s/deployment.yaml
    kubectl apply -f k8s/service.yaml
    ```
