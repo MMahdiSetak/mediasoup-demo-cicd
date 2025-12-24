@@ -2,10 +2,6 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: [
-    '**/*.test.ts',     // Adjust if you use different test file patterns
-  ],
-  // Optional: more settings as needed later
-  // roots: ['<rootDir>'],
-  // moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+  testMatch: ['**/test/**/*.test.ts'],  // Matches your utils.test.ts; adjust if needed
+  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
 };

@@ -26,13 +26,17 @@ jobs:
           cache: 'npm'
           cache-dependency-path: server/package-lock.json
 
-      - name: Install dependencies
+      - name: Install project dependencies
         working-directory: server
         run: npm ci
 
+      - name: Install test dependencies temporarily
+        working-directory: server
+        run: npm install --no-save jest@29.7.0 ts-jest@29.2.5 @types/jest@29.5.13
+
       - name: Run tests
         working-directory: server
-        run: npx -p jest@29.7.0 -p ts-jest@29.2.5 -p @types/jest@29.5.13 jest
+        run: npx jest  # Or "npx jest --ci --verbose" for more output
 
   build:
     runs-on: ubuntu-latest
