@@ -39,7 +39,7 @@
 		"start": "npx mediasoup-demo-server",
 		"watch": "node npm-scripts.mjs watch",
 		"connect-terminal": "npx mediasoup-demo-server-connect-terminal",
-		"test": "jest"
+		"test": "npx jest"
 	},
 	"jest": {
 		"preset": "ts-jest",
