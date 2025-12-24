@@ -38,7 +38,12 @@
 		"release": "node npm-scripts.mjs release",
 		"start": "npx mediasoup-demo-server",
 		"watch": "node npm-scripts.mjs watch",
-		"connect-terminal": "npx mediasoup-demo-server-connect-terminal"
+		"connect-terminal": "npx mediasoup-demo-server-connect-terminal",
+		"test": "jest"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node"
 	},
 	"dependencies": {
 		"@sitespeed.io/throttle": "^5.0.1",

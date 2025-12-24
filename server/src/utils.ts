@@ -39,3 +39,7 @@ export function areSameHttpOrigins(urlA?: string, urlB?: string): boolean {
 		return false;
 	}
 }
+
+export function isValidPort(port: number): boolean {
+  return Number.isInteger(port) && port >= 1 && port <= 65535;
+}
