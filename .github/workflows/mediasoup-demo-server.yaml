@@ -3,6 +3,8 @@ name: mediasoup-demo-server
 on:
   push:
     branches: [v3]
+    paths:
+      - 'server/**'  # Only trigger if server/ or subdirs change
   pull_request:
   workflow_dispatch:
 
