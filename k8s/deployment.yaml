@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediasoup-deployment
+  labels:
+    app: mediasoup
+spec:
+  replicas: 1  # Start with 1; scale as needed
+  selector:
+    matchLabels:
+      app: mediasoup
+  template:
+    metadata:
+      labels:
+        app: mediasoup
+    spec:
+      containers:
+      - name: mediasoup-server
+        image: demo:latest  
+        imagePullPolicy: IfNotPresent  # Or Always for production
+        ports:
+        - containerPort: 4443  # Internal app port
+        resources:
+          requests:
+            memory: "1Gi"  # Dedicated RAM
+            cpu: "2"     # Dedicated CPU (2 cores)
+          limits:
+            memory: "1Gi"
+            cpu: "2" # Same as requests for QoS of "Guaranteed"
+        env:
+        - name: DEBUG
+          value: "mediasoup-demo-server* mediasoup:WARN* mediasoup:ERROR*"  # Full debug logging
+        # Optional: Mount custom config if needed
+        # volumeMounts:
+        # - name: config-volume
+        #   mountPath: /app/config.mjs
+        #   subPath: config.mjs
+      # volumes:
+      # - name: config-volume
+      #   configMap:
+      #     name: mediasoup-config  # Create a ConfigMap from your custom config.mjs

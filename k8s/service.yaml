@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mediasoup-service
+spec:
+  type: ClusterIP  # Internal; change to NodePort or LoadBalancer for external access
+  selector:
+    app: mediasoup
+  ports:
+  - protocol: TCP
+    port: 4443       # Service port
+    targetPort: 4443 # Pod port
