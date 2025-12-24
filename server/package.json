@@ -41,10 +41,6 @@
 		"connect-terminal": "npx mediasoup-demo-server-connect-terminal",
 		"test": "npx jest"
 	},
-	"jest": {
-		"preset": "ts-jest",
-		"testEnvironment": "node"
-	},
 	"dependencies": {
 		"@sitespeed.io/throttle": "^5.0.1",
 		"awaitqueue": "^3.3.0",
